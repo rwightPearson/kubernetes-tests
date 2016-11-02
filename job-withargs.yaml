@@ -1,0 +1,72 @@
+apiVersion: extensions/v1beta1
+kind: Job
+metadata:
+  name: testexecutor
+  namespace: test-runner
+spec:
+  selector:
+    matchLabels:
+      app: testexecutor
+  activeDeadlineSeconds: %%TIMEOUT%%  #Prevent jobs from continuing to spawn for eternity if failing.
+  completions: %%COMPLETIONS%%    #Number of completions required for job to succeed
+  parallelism: %%PARRALLELISM%%    #Number of pods that are permitted to run in parrallel to reach desired completions
+  template:
+    metadata:
+      name: testexecutor
+      labels:
+        app: testexecutor
+    spec:
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: test-runner-secrets
+      containers:
+      - name: testexecutor
+        image: bitesize-registry.default.svc.cluster.local:5000/test-runner/test-executor-app:1.0.0-20161102223215
+        volumeMounts:
+        - mountPath: /etc/secret-volume
+          name: secret-volume
+          readOnly: true
+        env:
+        - name: GIT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: test-runner-secrets
+              key: git-username
+        - name: GIT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: test-runner-secrets
+              key: git-password
+        - name: STACK_ID
+          value: "%%STACK_ID%%"
+        - name: REGION
+          value: "%%REGION%%"
+        - name: ANSIBLE_BRANCH
+          value: "%%ANSIBLE_BRANCH%%"
+        - name: ENVIRONMENT
+          value: "%%ENVIRONMENT%%"
+        - name: GIT_REPO
+          value: "git@github.com:pearsontechnology/kubernetes-tests.git"
+        - name: GIT_BRANCH
+          value: "%%GIT_BRANCH%%"
+        - name: DEBUG
+          value: "%%DEBUG%%"
+        - name: KUBE_PASS
+          value: "%%KUBE_PASS%%"
+        - name: MINION_COUNT
+          value: "%%MINION_COUNT%%"
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        args: ["%%TYPE%%", "%%FILES%%"]
+      restartPolicy: Never
