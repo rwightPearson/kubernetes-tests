@@ -40,10 +40,6 @@ describe service('polkit') do
   it { should be_enabled }
   it { should be_running }
 end
-describe service('postfix') do
-  it { should be_enabled }
-  it { should be_running }
-end
 describe service('rsyslog') do
   it { should be_enabled }
   it { should be_running }
