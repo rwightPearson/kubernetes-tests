@@ -5,7 +5,7 @@ Kubernetes (k8s) containerized/deployable test suite.  This repo allows the exec
 ==========================================================================================
 **Getting Started**
 
-1) Contact us to get access to a test container docker image, which is vital to being able to run the containerized test suite.  The test container (test-executor-app) is built from this repo, using a custom Pearson jenkins plugin that is not yet open sourced.  This test-container docker image must be accessible from the [job.yaml](./job.yaml) and [job-withargs.yaml](./job-withargs.yaml) files in this repository in order to start the kubernetes job.
+1) Get access to a test container docker image, which is vital to being able to run the containerized test suite. The latest version is hosted on pearson's docker hub registry (docker pull pearsontechnology/test-executor-app).  The test container (test-executor-app) is built from this repo, using a custom Pearson jenkins plugin that is not yet open sourced. So, pull from docker hub and add it as the image location in [job.yaml](./job.yaml) and [job-withargs.yaml](./job-withargs.yaml) instead of the bitesize-registry location that is currently baselined in those files.
 
 2) Familiarize yourself with some of the files that are used to start the kubernetes jobs:
 
@@ -14,7 +14,7 @@ Kubernetes (k8s) containerized/deployable test suite.  This repo allows the exec
 - [run.sh](./test-executor-app/run.sh) - This is the test container Docker entry point. It builds up a hosts.yaml file for a list of hosts that will be under tests in the cluster, configures kubectl, and then starts the tests by launching testRunner.py
 - [testRunner.py](./test-executor-app/testRunnery.py) - This file is built into the test container image and is responsible for execution of the INSPEC/BATS/Python tests in the kubernetes-tests repo.
 
-3) Review what is required in your PaaS environment to run tests. This is detailed in the section titled [**What's Required By the Test Container to Run?**](#RunTests)
+3) Review what is required in your Kubernetes PaaS environment to run tests. This is detailed in the section titled [**What's Required By the Test Container to Run?**](#RunTests)
 
 ==========================================================================================
 
