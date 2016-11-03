@@ -28,7 +28,7 @@ print_pod_logs(){
     echo
     kubectl logs $lastPod --namespace=test-runner
 
-  else:
+  else
     nextToLastPod=$(kubectl get pods --namespace=test-runner --show-all -o=custom-columns=STATUS:.status.startTime,NAME:.metadata.name,CONTAINER_STATUS:.status.containerStatuses  | grep -v '\[\]' | sort -r | head -n 3 | tail -n 1 | grep testexecutor | awk '{print $5}')
     echo
     echo "------------------------------------------------------------------------"
