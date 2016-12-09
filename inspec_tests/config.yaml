@@ -2,8 +2,6 @@ master:
   - test_master_spec.rb
 etcd:
   - test_etcd_spec.rb
-nfs:
-  - test_nfs_spec.rb
 loadbalancer:
   - test_loadbalancer_spec.rb
 stackstorm:

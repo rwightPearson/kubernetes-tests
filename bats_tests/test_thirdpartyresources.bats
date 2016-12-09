@@ -16,3 +16,7 @@ load helpers
 @test "mysql thirdpartyresource" {
   kubectl get thirdpartyresources mysql.prsn.io --namespace=default --no-headers
 }
+
+@test "nfs pulse thirdpartyresource" {
+  kubectl get thirdpartyresources nfs.pulse.prsn.io --namespace=default --no-headers
+}
