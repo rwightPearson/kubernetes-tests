@@ -213,7 +213,7 @@ applications:
         type: debian-package
         origin:
           build: test-executor-app
-      - name: rubygem-rspec_junit_formatter
+      - name: rubygem-rspec-junit-formatter
         type: debian-package
         origin:
           build: test-executor-app
