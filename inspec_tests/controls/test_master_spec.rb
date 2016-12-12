@@ -83,3 +83,7 @@ describe service('tuned') do
   it { should be_enabled }
   it { should be_running }
 end
+describe mount('/') do
+  it { should be_mounted }
+  its('type') { should eq  'ext4' }
+end

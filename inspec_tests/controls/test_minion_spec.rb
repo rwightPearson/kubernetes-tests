@@ -89,3 +89,7 @@ end
 describe file('/etc/hosts') do
   its('content') { should match(%r{172.31.16.3 bitesize-registry.default.svc.cluster.local}) }
 end
+describe mount('/') do
+  it { should be_mounted }
+  its('type') { should eq  'ext4' }
+end
