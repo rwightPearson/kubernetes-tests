@@ -91,5 +91,5 @@ describe file('/etc/hosts') do
 end
 describe mount('/') do
   it { should be_mounted }
-  its('type') { should eq  'ext4' }
+  its('type') { should eq  'xfs' }
 end
