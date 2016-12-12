@@ -12,7 +12,7 @@ components:
         package: python2.7
     repository:
       git: git@github.com:pearsontechnology/kubernetes-tests.git
-      branch: bite-1208
+      branch: master
     build:
       - shell: mkdir -p var
       - shell: cp -a test-executor-app/testRunner.py var
