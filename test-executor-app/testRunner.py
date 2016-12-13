@@ -20,6 +20,7 @@ failuresReceived = False
 GIT_USERNAME = os.environ['GIT_USERNAME']
 GIT_PASSWORD = os.environ['GIT_PASSWORD']
 GIT_REPO = os.environ['GIT_REPO']
+GIT_BRANCH = os.environ['GIT_BRANCH']
 
 g = Github(GIT_USERNAME, GIT_PASSWORD)
 
@@ -31,7 +32,7 @@ def clone_repo(name, url, directory):
     location_with_password = '{0}:{1}@{2}'.format(encoded_username, encoded_password, netloc)
     parts = parts._replace(netloc=location_with_password)
     auth_url = parts.geturl()
-    command = "git clone " + auth_url + " " + directory
+    command = "git clone --branch " + GIT_BRANCH + " " + auth_url + " " + directory
     print("Cloning Repo = {0}".format(command))
     run_script(command,True)
 
