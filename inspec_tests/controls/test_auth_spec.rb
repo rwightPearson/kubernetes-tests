@@ -64,6 +64,10 @@ describe service('tuned') do
   it { should be_enabled }
   it { should be_running }
 end
+describe mount('/') do
+  it { should be_mounted }
+  its('type') { should eq  'xfs' }
+end
 describe mount('/mnt/ephemeral') do
   it { should be_mounted }
   its('type') { should eq 'ext4'}
@@ -72,3 +76,4 @@ describe mount('/mnt/docker') do
   it { should be_mounted }
   its('type') { should eq 'btrfs'}
 end
+

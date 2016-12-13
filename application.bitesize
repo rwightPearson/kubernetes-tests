@@ -41,7 +41,7 @@ applications:
         type: debian-package
         origin:
           build: test-executor-app
-      - name: pygithub 
+      - name: pygithub
         type: debian-package
         origin:
           build: test-executor-app
@@ -206,6 +206,14 @@ applications:
         origin:
           build: test-executor-app
       - name: rubygem-sslshake
+        type: debian-package
+        origin:
+          build: test-executor-app
+      - name: rubygem-parallel
+        type: debian-package
+        origin:
+          build: test-executor-app
+      - name: rubygem-rspec-junit-formatter
         type: debian-package
         origin:
           build: test-executor-app
