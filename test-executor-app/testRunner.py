@@ -136,9 +136,9 @@ testFiles = args.files
 
 clone_repo("kubernetes-tests", "https://github.com/pearsontechnology/kubernetes-tests.git", "/tmp/kubernetes-tests")
 
-#executeInspecTests(testType, testFiles)
+executeInspecTests(testType, testFiles)
 executePythonTests(testType, testFiles)
-#executeBatsTests(testType, testFiles)
+executeBatsTests(testType, testFiles)
 
 if(failuresReceived):
     print ("**********************************************************")
