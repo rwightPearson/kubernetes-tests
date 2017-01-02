@@ -20,7 +20,7 @@ def test_stackstorm(domain,ip):
 
 def request_ns(st2host):
 
-    data = {"action": "bitesize.new_request_ns",
+    data = {"action": "bitesize.request_ns",
             "email": "test@test.com",
             "ns_list": "dev",
             "project": "kt",
@@ -31,7 +31,7 @@ def request_ns(st2host):
 
 def create_project(st2host):
 
-    data = {"action": "bitesize.new_create_project",
+    data = {"action": "bitesize.create_project",
             "project": "kt"}
 
     return run_st2(st2host, data)
