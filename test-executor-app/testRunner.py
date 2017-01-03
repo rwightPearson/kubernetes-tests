@@ -125,14 +125,17 @@ parser = argparse.ArgumentParser()
 parser.add_argument("config", help="config - Key/Value Yaml File containing hostnames ad :ips' to test")
 parser.add_argument("type", nargs='?', help="type - Type of files to test (python,inspec,bats)")
 parser.add_argument("files", nargs='*', help="files - Files to test")
+parser.add_argument("debug", nargs='?', help="debug - Debug Option Specified")
 args = parser.parse_args()
 hostYaml = args.config
 testType = args.type
 testFiles = args.files
+debugFlag = args.debug
 
 #print("Host Yaml= %s" % (hostYaml))
 #print("Test Type= %s" % (testType))
 #print("Test Files= %s" % (testFiles))
+print("Debug Option Specified DebugFlag=%s" % (debugFlag))
 
 clone_repo("kubernetes-tests", "https://github.com/pearsontechnology/kubernetes-tests.git", "/tmp/kubernetes-tests")
 
@@ -144,4 +147,7 @@ if(failuresReceived):
     print ("**********************************************************")
     print ("Errors/Failures Received During Containerized Tests")
     print ("**********************************************************")
+    if(debugFlag): #If there was a debug flag, don't kill the pod. Let it run until the timeout is reached
+        while True:
+            time.sleep(5)
     sys.exit(1)

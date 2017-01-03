@@ -32,4 +32,4 @@ kubectl config set-credentials ${ENVIRONMENT}-admin --client-key=/etc/secret-vol
 kubectl config set-context ${ENVIRONMENT} --cluster=${ENVIRONMENT} --user=${ENVIRONMENT}-admin
 kubectl config use-context ${ENVIRONMENT}
 
-python -u /var/testRunner.py "/var/hosts.yaml" "python" $@
+python -u /var/testRunner.py "/var/hosts.yaml" $@
