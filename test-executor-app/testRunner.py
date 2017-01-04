@@ -21,6 +21,7 @@ GIT_USERNAME = os.environ['GIT_USERNAME']
 GIT_PASSWORD = os.environ['GIT_PASSWORD']
 GIT_REPO = os.environ['GIT_REPO']
 GIT_BRANCH = os.environ['GIT_BRANCH']
+DEBUG = os.environ['DEBUG']
 
 g = Github(GIT_USERNAME, GIT_PASSWORD)
 
@@ -125,17 +126,14 @@ parser = argparse.ArgumentParser()
 parser.add_argument("config", help="config - Key/Value Yaml File containing hostnames ad :ips' to test")
 parser.add_argument("type", nargs='?', help="type - Type of files to test (python,inspec,bats)")
 parser.add_argument("files", nargs='*', help="files - Files to test")
-parser.add_argument("debug", nargs='?', help="debug - Debug Option Specified")
 args = parser.parse_args()
 hostYaml = args.config
 testType = args.type
 testFiles = args.files
-debugFlag = args.debug
 
 #print("Host Yaml= %s" % (hostYaml))
 #print("Test Type= %s" % (testType))
 #print("Test Files= %s" % (testFiles))
-print("Debug Option Specified DebugFlag=%s" % (debugFlag))
 
 clone_repo("kubernetes-tests", "https://github.com/pearsontechnology/kubernetes-tests.git", "/tmp/kubernetes-tests")
 
@@ -143,11 +141,13 @@ executeInspecTests(testType, testFiles)
 executePythonTests(testType, testFiles)
 executeBatsTests(testType, testFiles)
 
+print("Debug Option Specified=%s" % (DEBUG))
+if(DEBUG): #If there was a debug flag, don't kill the pod. Let it run until the timeout is reached
+    while True:
+        time.sleep(5)
+        
 if(failuresReceived):
     print ("**********************************************************")
     print ("Errors/Failures Received During Containerized Tests")
     print ("**********************************************************")
-    if(debugFlag): #If there was a debug flag, don't kill the pod. Let it run until the timeout is reached
-        while True:
-            time.sleep(5)
     sys.exit(1)
