@@ -141,11 +141,10 @@ executeInspecTests(testType, testFiles)
 executePythonTests(testType, testFiles)
 executeBatsTests(testType, testFiles)
 
-print("Debug Option Specified=%s" % (DEBUG))
 if(DEBUG): #If there was a debug flag, don't kill the pod. Let it run until the timeout is reached
     while True:
         time.sleep(5)
-        
+
 if(failuresReceived):
     print ("**********************************************************")
     print ("Errors/Failures Received During Containerized Tests")

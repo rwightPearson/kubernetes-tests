@@ -3,9 +3,16 @@
 export KUBE_TOKEN=`cat /var/run/secrets/kubernetes.io/serviceaccount/token`
 export NAMESPACE=`cat /var/run/secrets/kubernetes.io/serviceaccount/namespace`
 
-curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" > /dev/null 2>&1
-unzip awscli-bundle.zip > /dev/null 2>&1
-./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws > /dev/null 2>&1
+[ -f /var/hosts.yaml ] && rm -f /var/hosts.yaml
+
+if [ -f /usr/local/bin/aws ]
+then
+  echo "Skipping AWS CLI Install"
+else
+  curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" > /dev/null 2>&1
+  unzip awscli-bundle.zip > /dev/null 2>&1
+  ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws > /dev/null 2>&1
+fi
 
 stackips=`aws ec2 describe-instances --region=${REGION} --filters "Name=tag:Environment,Values=${ENVIRONMENT}" "Name=tag:Stack,Values=${STACK_ID}" "Name=instance-state-code,Values=16" | jq '.Reservations[].Instances[].PrivateIpAddress' | sed -e 's/\"//g'`
 bastion=`aws ec2 describe-instances --region=${REGION} --filters "Name=tag:Environment,Values=${ENVIRONMENT}" "Name=tag:Name,Values=bastion.${ENVIRONMENT}.kube" "Name=instance-state-code,Values=16" | jq '.Reservations[].Instances[].PrivateIpAddress' | sed -e 's/\"//g'`
