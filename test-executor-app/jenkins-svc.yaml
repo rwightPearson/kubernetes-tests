@@ -3,7 +3,6 @@ kind: Service
 metadata:
   labels:
     name: jenkins
-    serviceloadbalancer/lb.host: jenkins.test-runner.prsn-dev.io
   name: jenkins
   namespace: test-runner
   selfLink: /api/v1/namespaces/test-runner/services/jenkins

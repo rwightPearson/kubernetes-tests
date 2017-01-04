@@ -3,7 +3,8 @@ kind: Ingress
 metadata:
   name: jenkins
   namespace: test-runner
-  selfLink: /apis/extensions/v1beta1/namespaces/test-runner/ingresses/jenkins
+  labels:
+    ssl: "false"
 spec:
   rules:
   - host: jenkins.test-runner.prsn-dev.io
