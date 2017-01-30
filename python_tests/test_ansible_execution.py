@@ -77,32 +77,32 @@ def test_no_ansible_playbook_failures_on_minion_nodes():
                 stdout,stderr,errorCode=run_script(cmd)
                 assert errorCode != 0   #If Error Code is non-zere, then no Playbook/RECAP failures were found in the log
 
-def test_nfs_nodes_clone_correct_ansible_branch():
-    ec2 = boto3.client('ec2', region_name=os.environ["REGION"])
+#def test_nfs_nodes_clone_correct_ansible_branch():
+#    ec2 = boto3.client('ec2', region_name=os.environ["REGION"])
+#    ansible_branch=os.environ["ANSIBLE_BRANCH"]
+#    hostYaml="/var/hosts.yaml"
+#    with open(hostYaml, 'r') as ymlfile1:  # hosts to test
+#        contents = yaml.load(ymlfile1)
+#        for host in contents['hosts']:
+#            if ("nfs" in host['name']):
+#                cmd = "echo \"Host {0}\n\tStrictHostKeyChecking no\n\" >> ~/.ssh/config".format(host['value'])
+#                run_script(cmd)
+#                cmd="ssh -i ~/.ssh/bitesize.key root@{0} 'cat /var/log/cloud-init-output.log | grep -o \"git clone .* git@github.com:pearsontechnology/ansible-roles.git aws\" | grep -m 1 '{1}''".format(host['value'],ansible_branch)
+#                stdout,stderr,errorCode=run_script(cmd)
+#                assert errorCode == 0   #If error code is zero, then ANSIBLE_BRANCH was used to clone the ansible-roles repo
 
-    ansible_branch=os.environ["ANSIBLE_BRANCH"]
-    hostYaml="/var/hosts.yaml"
-    with open(hostYaml, 'r') as ymlfile1:  # hosts to test
-        contents = yaml.load(ymlfile1)
-        for host in contents['hosts']:
-            if ("nfs" in host['name']):
-                cmd = "echo \"Host {0}\n\tStrictHostKeyChecking no\n\" >> ~/.ssh/config".format(host['value'])
-                run_script(cmd)
-                cmd="ssh -i ~/.ssh/bitesize.key root@{0} 'cat /var/log/cloud-init-output.log | grep -o \"git clone .* git@github.com:pearsontechnology/ansible-roles.git aws\" | grep -m 1 '{1}''".format(host['value'],ansible_branch)
-                stdout,stderr,errorCode=run_script(cmd)
-                assert errorCode == 0   #If error code is zero, then ANSIBLE_BRANCH was used to clone the ansible-roles repo
-def test_bastion_nodes_clone_correct_ansible_branch():
-    ansible_branch=os.environ["ANSIBLE_BRANCH"]
-    hostYaml="/var/hosts.yaml"
-    with open(hostYaml, 'r') as ymlfile1:  # hosts to test
-        contents = yaml.load(ymlfile1)
-        for host in contents['hosts']:
-            if ("bastion" in host['name']):
-                cmd = "echo \"Host {0}\n\tStrictHostKeyChecking no\n\" >> ~/.ssh/config".format(host['value'])
-                run_script(cmd)
-                cmd="ssh -i ~/.ssh/bitesize.key root@{0} 'cat /var/log/cloud-init-output.log | grep -o \"git clone .* git@github.com:pearsontechnology/ansible-roles.git aws\" | grep -m 1 '{1}''".format(host['value'],ansible_branch)
-                stdout,stderr,errorCode=run_script(cmd)
-                assert errorCode == 0   #If error code is zero, then ANSIBLE_BRANCH was used to clone the ansible-roles repo
+#def test_bastion_nodes_clone_correct_ansible_branch():
+#    ansible_branch=os.environ["ANSIBLE_BRANCH"]
+#    hostYaml="/var/hosts.yaml"
+#    with open(hostYaml, 'r') as ymlfile1:  # hosts to test
+#        contents = yaml.load(ymlfile1)
+#        for host in contents['hosts']:
+#            if ("bastion" in host['name']):
+#                cmd = "echo \"Host {0}\n\tStrictHostKeyChecking no\n\" >> ~/.ssh/config".format(host['value'])
+#                run_script(cmd)
+#                cmd="ssh -i ~/.ssh/bitesize.key root@{0} 'cat /var/log/cloud-init-output.log | grep -o \"git clone .* git@github.com:pearsontechnology/ansible-roles.git aws\" | grep -m 1 '{1}''".format(host['value'],ansible_branch)
+#                stdout,stderr,errorCode=run_script(cmd)
+#                assert errorCode == 0   #If error code is zero, then ANSIBLE_BRANCH was used to clone the ansible-roles repo
 def test_stackstorm_nodes_clone_correct_ansible_branch():
     ansible_branch=os.environ["ANSIBLE_BRANCH"]
     hostYaml="/var/hosts.yaml"
