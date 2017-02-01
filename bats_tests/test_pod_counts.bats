@@ -11,8 +11,9 @@ load helpers
 }
 
 @test "kube-dns pods" {
-  KUBE_DNS_DESIRED=`kubectl get rc kube-dns-v18 --namespace=kube-system -o jsonpath='{.spec.replicas}'`
-  KUBE_DNS_CURRENT=`kubectl get rc kube-dns-v18 --namespace=kube-system -o jsonpath='{.status.replicas}'`
+  # cops-364 - Move rc to a daemonset.
+  KUBE_DNS_DESIRED=`kubectl get nodes -l role=minion --no-headers   | wc -l`
+  KUBE_DNS_CURRENT=`kubectl get daemonset kube-dns-v18 --namespace=kube-system -o jsonpath='{.status.currentNumberScheduled}'`
   values_equal $KUBE_DNS_DESIRED $KUBE_DNS_CURRENT
 }
 
