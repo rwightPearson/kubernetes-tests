@@ -28,23 +28,23 @@ load helpers
   values_equal $VAULT_DESIRED $VAULT_CURRENT
 }
 
-@test "es-master pods" {
-  ES_MASTER_DESIRED=`kubectl get deployments es-master --namespace=default -o jsonpath='{.spec.replicas}'`
-  ES_MASTER_CURRENT=`kubectl get deployments es-master --namespace=default -o jsonpath='{.status.replicas}'`
-  values_equal $ES_MASTER_DESIRED $ES_MASTER_CURRENT
-}
-
-@test "es-data pods" {
-  ES_DATA_DESIRED=`kubectl get deployments es-data --namespace=default -o jsonpath='{.spec.replicas}'`
-  ES_DATA_CURRENT=`kubectl get deployments es-data --namespace=default -o jsonpath='{.status.replicas}'`
-  values_equal $ES_DATA_DESIRED $ES_DATA_CURRENT
-}
-
-@test "es-client pods" {
-  ES_CLIENT_DESIRED=`kubectl get deployments es-client --namespace=default -o jsonpath='{.spec.replicas}'`
-  ES_CLIENT_CURRENT=`kubectl get deployments es-client --namespace=default -o jsonpath='{.status.replicas}'`
-  values_equal $ES_CLIENT_DESIRED $ES_CLIENT_CURRENT
-}
+# @test "es-master pods" {
+#   ES_MASTER_DESIRED=`kubectl get deployments es-master --namespace=default -o jsonpath='{.spec.replicas}'`
+#   ES_MASTER_CURRENT=`kubectl get deployments es-master --namespace=default -o jsonpath='{.status.replicas}'`
+#   values_equal $ES_MASTER_DESIRED $ES_MASTER_CURRENT
+# }
+#
+# @test "es-data pods" {
+#   ES_DATA_DESIRED=`kubectl get deployments es-data --namespace=default -o jsonpath='{.spec.replicas}'`
+#   ES_DATA_CURRENT=`kubectl get deployments es-data --namespace=default -o jsonpath='{.status.replicas}'`
+#   values_equal $ES_DATA_DESIRED $ES_DATA_CURRENT
+# }
+#
+# @test "es-client pods" {
+#   ES_CLIENT_DESIRED=`kubectl get deployments es-client --namespace=default -o jsonpath='{.spec.replicas}'`
+#   ES_CLIENT_CURRENT=`kubectl get deployments es-client --namespace=default -o jsonpath='{.status.replicas}'`
+#   values_equal $ES_CLIENT_DESIRED $ES_CLIENT_CURRENT
+# }
 
 @test "monitoring-heapster-v6 pods" {
   HEAPSTER_DESIRED=`kubectl get rc monitoring-heapster-v6 --namespace=kube-system -o jsonpath='{.spec.replicas}'`
