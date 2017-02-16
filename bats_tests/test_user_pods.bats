@@ -46,3 +46,7 @@ load helpers
 @test "td-agent-es" {
   kubectl get pods --namespace=kube-system --no-headers | grep td-agent-es | grep Running
 }
+
+@test "sysdig-agent" {
+  kubectl get pods --namespace=kube-system --no-headers | grep sysdig-agent | grep Running
+}
