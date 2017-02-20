@@ -34,13 +34,13 @@ load helpers
   kubectl get svc vault --namespace=kube-system --no-headers
 }
 
-@test "elasticsearch service" {
-  kubectl get svc elasticsearch --namespace=default --no-headers
-}
-
-@test "elasticsearch-discovery service" {
-  kubectl get svc elasticsearch-discovery --namespace=default --no-headers
-}
+# @test "elasticsearch service" {
+#   kubectl get svc elasticsearch --namespace=default --no-headers
+# }
+#
+# @test "elasticsearch-discovery service" {
+#   kubectl get svc elasticsearch-discovery --namespace=default --no-headers
+# }
 
 @test "monitoring-heapster service" {
   kubectl get svc monitoring-heapster --namespace=kube-system --no-headers
