@@ -5,7 +5,6 @@ metadata:
     name: jenkins
   name: jenkins
   namespace: test-runner
-  selfLink: /apis/extensions/v1beta1/namespaces/test-runner/deployments/jenkins
 spec:
   replicas: 1
   selector:
@@ -38,6 +37,8 @@ spec:
             secretKeyRef:
               name: test-runner-secrets
               key: jenkins-pass
+        - name: DOCKER_REGISTRY
+          value: bitesize-registry.default.svc.cluster.local:5000
         - name: SEED_JOBS_REPO
           value: git@github.com:pearsontechnology/kubernetes-tests.git
         - name: GIT_USERNAME
@@ -70,7 +71,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: bitesize-registry.default.svc.cluster.local:5000/geribatai/jenkins:3.4.25
+        image: bitesize-registry.default.svc.cluster.local:5000/geribatai/jenkins:3.4.32
         imagePullPolicy: Always
         name: jenkins
         ports:
