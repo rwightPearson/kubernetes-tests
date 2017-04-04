@@ -36,7 +36,7 @@ done
 
 curl -L -k -s -o kubernetes.tar.gz https://github.com/kubernetes/kubernetes/releases/download/${KUBERNETES_VERSION}/kubernetes.tar.gz
 tar zxf kubernetes.tar.gz
-sudo cp kubernetes/platforms/linux/amd64/kubectl .
+sudo cp kubernetes/platforms/linux/amd64/kubectl /usr/local/bin
 
 kubectl config set-cluster ${ENVIRONMENT} --server=https://${KUBERNETES_SERVICE_HOST} --certificate-authority=/etc/secret-volume/kubectl-ca
 kubectl config set-credentials ${ENVIRONMENT}-admin --client-key=/etc/secret-volume/kubectl-client-key --username=admin --password=${KUBE_PASS}
