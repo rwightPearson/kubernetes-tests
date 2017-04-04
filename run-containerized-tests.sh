@@ -58,6 +58,7 @@ run_test(){
   sed -i '' -e "s/%%GIT_BRANCH%%/$GIT_BRANCH/" job-temp.yaml > /dev/null 2>&1
   sed -i '' -e "s/%%DEBUG%%/$DEBUG/" job-temp.yaml > /dev/null 2>&1
   sed -i '' -e "s/%%KUBE_PASS%%/$KUBE_PASS/" job-temp.yaml > /dev/null 2>&1
+  sed -i '' -e "s/%%KUBERNETES_VERSION%%/$KUBERNETES_VERSION/" job-temp.yaml > /dev/null 2>&1
   sed -i '' -e "s/%%MINION_COUNT%%/$MINION_COUNT/" job-temp.yaml > /dev/null 2>&1
   sed -i '' -e "s/%%ANSIBLE_BRANCH%%/$ANSIBLE_BRANCH/" job-temp.yaml > /dev/null 2>&1
   #Need to delete jobs

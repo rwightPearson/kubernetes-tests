@@ -34,10 +34,6 @@ components:
       - shell: git clone https://github.com/sstephenson/bats.git
       - shell: bats/install.sh .
       - shell: fpm -s dir -t deb -n bats --iteration $(date "+%Y%m%d%H%M%S") --prefix /usr/local/ bin libexec
-      - shell: curl -L -k -s -o kubernetes.tar.gz https://github.com/kubernetes/kubernetes/releases/download/v1.2.2/kubernetes.tar.gz
-      - shell: tar zxf kubernetes.tar.gz
-      - shell: sudo cp kubernetes/platforms/linux/amd64/kubectl .
-      - shell: fpm -s dir -t deb -n kubectl --iteration $(date "+%Y%m%d%H%M%S") --prefix /usr/local/bin/ kubectl
       - shell: ls -alrt *deb*
     artifacts:
       - location: "*.deb"

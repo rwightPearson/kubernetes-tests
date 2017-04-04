@@ -54,6 +54,8 @@ spec:
           value: "%%DEBUG%%"
         - name: KUBE_PASS
           value: "%%KUBE_PASS%%"
+        - name: KUBERNETES_VERSION
+          value: "%%KUBERNETES_VERSION%%"
         - name: MINION_COUNT
           value: "%%MINION_COUNT%%"
         - name: MY_POD_NAME

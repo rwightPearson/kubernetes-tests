@@ -225,8 +225,4 @@ applications:
         type: debian-package
         origin:
           build: test-executor-app
-      - name: kubectl
-        type: debian-package
-        origin:
-          build: test-executor-app
     command: "/var/run.sh"
