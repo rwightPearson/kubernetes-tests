@@ -18,6 +18,6 @@ load helpers
   kubectl get ing grafana --namespace=default --no-headers
 }
 
-@test "es ingress" {
-  kubectl get ing es-ingress --namespace=default --no-headers
-}
+#@test "es ingress" {
+#  kubectl get ing es-ingress --namespace=default --no-headers
+#}
