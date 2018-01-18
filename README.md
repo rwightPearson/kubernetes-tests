@@ -3,7 +3,7 @@
 Kubernetes (k8s) containerized/deployable test suite.  This repo allows the execution of BATS, INSPEC, and Python tests against a deployed PaaS.  Through the usage of kubernetes jobs a test contianer spins up execute a specified number of tests against the nodes within the kubernetes PaaS.  
 
 ==========================================================================================
-**Getting Started**
+**Getting Started** 
 
 1) Get access to a test container docker image, which is vital to being able to run the containerized test suite. The latest version is hosted on pearson's docker hub registry (docker pull pearsontechnology/test-executor-app).  The test container (test-executor-app) is built from this repo, using a custom Pearson jenkins plugin that is not yet open sourced. So, pull from docker hub and add it as the image location in [job.yaml](./job.yaml) and [job-withargs.yaml](./job-withargs.yaml) instead of the bitesize-registry location that is currently baselined in those files.
 
